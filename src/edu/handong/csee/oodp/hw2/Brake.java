@@ -1,6 +1,6 @@
 package edu.handong.csee.oodp.hw2;
 
-public class Brake implements Runnable {
+public class Brake extends Informations implements Runnable {
 	
 	@Override
 	
