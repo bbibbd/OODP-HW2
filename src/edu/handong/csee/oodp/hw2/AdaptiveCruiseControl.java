@@ -1,6 +1,6 @@
 package edu.handong.csee.oodp.hw2;
 
-public class AdaptiveCruiseControl extends Informations implements Runnable {
+public class AdaptiveCruiseControl implements Runnable {
 
 	@Override
 	public void run() {
