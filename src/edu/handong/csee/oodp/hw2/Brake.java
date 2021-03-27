@@ -2,12 +2,6 @@ package edu.handong.csee.oodp.hw2;
 
 public class Brake implements Runnable {
 	
-	int currentSpeed;
-
-	public Brake(int currentSpeed) {
-		this.currentSpeed = currentSpeed;
-	}
-	
 	public int setRandomEvent() {
 		int randomEventEvoker = (int)(Math.random()*3);
 		
@@ -24,41 +18,43 @@ public class Brake implements Runnable {
 		return randomEventEvoker;
 	}
 	
-	public void handleEvents(int randomEvent) {
-		
-		System.out.println("Thread for speed control, current speed: "+currentSpeed);
+	public void handleEvents(int randomEvent, int decreasedSpeed, int increasedSpeed) {
 		
 		if(randomEvent == 0) {
 			System.out.println("Slowing down speed to stop at red light");
-			System.out.println("Current Decreased Speed iin Front of Red Light: "+10);
+			System.out.println("Current Decreased Speed in Front of Red Light: "+decreasedSpeed);
 			System.out.println("Now the car made a complete stop");
 			System.out.println("Now Green Light Turned on");
-			System.out.println("Current Increased Speed on Green Traffic Light: "+31);
+			System.out.println("Current Increased Speed on Green Traffic Light: "+increasedSpeed);
 		}
 		
 		else if(randomEvent == 1) {
 			System.out.println("Animal Crossing Sensed: slow down...!");
-			System.out.println("Current Decreased Speed in Front of Animal: "+21);
+			System.out.println("Current Decreased Speed in Front of Animal: "+decreasedSpeed);
 			System.out.println("Road Cleared of Animal: Increase Speed");
-			System.out.println("Current Increased Speed after Passing an Animal: "+22);
+			System.out.println("Current Increased Speed after Passing an Animal: "+increasedSpeed);
 		}
 		else {
 			System.out.println("Pedestrain Crossing Sensed: slow down to stop!");
-			System.out.println("Current Decreased Speed in Front of Pedestrain: "+21);
-			System.out.println("Road Cleared of Animal: Increase Speed");
-			System.out.println("Current Increased Speed after Passing a Pedestrain in Safe Area: "+22);
+			System.out.println("Current Decreased Speed in Front of Pedestrain: "+decreasedSpeed);
+			System.out.println("Road Cleared of Pedestrain: Increase Speed");
+			System.out.println("Current Increased Speed after Passing a Pedestrain in Safe Area: "+increasedSpeed);
 		}
 	}
 	public void run() {
-		
-		try {
+
 			for(int i=0; i<15; i++) {
-				handleEvents(setRandomEvent());	
-				Thread.sleep(50);
+				try {
+					Thread.sleep(50);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				int decreasedSpeed = (int)(Math.random()*(10)+10);
+				handleEvents(setRandomEvent(),decreasedSpeed,decreasedSpeed+20);	
 			}
-		}catch (InterruptedException e) {
-			
-		}
+
 		
 		
 	}
