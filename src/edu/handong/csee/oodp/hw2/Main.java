@@ -13,20 +13,22 @@ public class Main {
 		int currentTemp = (int)(Math.random()*(26-23)+23);
 		keyboard.close();
 		
-		Runnable brake = new Brake();
-		Runnable temp = new TemperatureControl(currentTemp);
-		Runnable speedControl = new Speed(speedSet);
-		Runnable adc = new AdaptiveCruiseControl();
+		Mediator mb = new BlackBoxMediator();
+		//Runnable temp = (AutonomousCar) new TemperatureControl(currentTemp, mb);
+		//Thread brakeThread = new Brake();
+		Thread tempThread = new TemperatureControl(currentTemp, mb);
+		Thread speedThread = new Speed(speedSet);
+		Thread cruisthread = new AdaptiveCruiseControl();
 		
-		Thread brakeThread = new Thread(brake);
-		Thread tempThread = new Thread(temp);
-		Thread speedThread = new Thread(speedControl);
-		Thread cruisthread = new Thread(adc);
-		
-		speedThread.start();
-		brakeThread.start();
+		//speedThread.start();
+		//brakeThread.start();
 		tempThread.start();
-		cruisthread.start();
+	
+		
+
+
+		
+		//cruisthread.start();
 
 		
 	}

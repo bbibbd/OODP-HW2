@@ -1,6 +1,13 @@
 package edu.handong.csee.oodp.hw2;
 
-public class Brake implements Runnable {
+public class Brake extends Autonomous {
+	
+	private Mediator med;
+	private int countRedLight=0, countAnimal=0, countPedstrain=0;
+	
+	public Brake(Mediator med) {
+		this.med = med;
+	}
 	
 	public int setRandomEvent() {
 		int randomEventEvoker = (int)(Math.random()*3);
@@ -21,6 +28,7 @@ public class Brake implements Runnable {
 	public void handleEvents(int randomEvent, int decreasedSpeed, int increasedSpeed) {
 		
 		if(randomEvent == 0) {
+			countRedLight ++;
 			System.out.println("Slowing down speed to stop at red light");
 			System.out.println("Current Decreased Speed in Front of Red Light: "+decreasedSpeed);
 			System.out.println("Now the car made a complete stop");
@@ -29,12 +37,15 @@ public class Brake implements Runnable {
 		}
 		
 		else if(randomEvent == 1) {
+			countAnimal ++;
 			System.out.println("Animal Crossing Sensed: slow down...!");
 			System.out.println("Current Decreased Speed in Front of Animal: "+decreasedSpeed);
 			System.out.println("Road Cleared of Animal: Increase Speed");
 			System.out.println("Current Increased Speed after Passing an Animal: "+increasedSpeed);
 		}
 		else {
+			
+			countPedstrain ++;
 			System.out.println("Pedestrain Crossing Sensed: slow down to stop!");
 			System.out.println("Current Decreased Speed in Front of Pedestrain: "+decreasedSpeed);
 			System.out.println("Road Cleared of Pedestrain: Increase Speed");

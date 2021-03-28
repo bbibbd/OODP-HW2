@@ -1,7 +1,8 @@
 package edu.handong.csee.oodp.hw2;
 
-public class Speed implements Runnable {
+public class Speed extends Thread {
 	int setSpeed;
+	int count =0;
 	int currentSpeed = (int)(Math.random()*(100-60)+60);
 	public Speed(int setSpeed) {
 		this.setSpeed = setSpeed;
