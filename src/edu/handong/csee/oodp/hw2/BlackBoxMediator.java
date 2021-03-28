@@ -1,13 +1,14 @@
 package edu.handong.csee.oodp.hw2;
 
+import edu.handong.csee.oodp.mediatorExample.Colleague;
+
 public class BlackBoxMediator extends Mediator {
 	
 
 	@Override
-	public void mediate(int count) {
-		// TODO Auto-generated method stub
-		for(AutonomousCar threads: autoCar) {
-			threads.handleData();
+	void mediate(String data) {
+		
+		for(Colleague colleague: colleagues) {
 			
 		}
 		

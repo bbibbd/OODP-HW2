@@ -1,6 +1,6 @@
 package edu.handong.csee.oodp.hw2;
 
-public class Brake extends Autonomous {
+public class Brake extends AutonomousCar {
 	
 	private Mediator med;
 	private int countRedLight=0, countAnimal=0, countPedstrain=0;
@@ -52,6 +52,7 @@ public class Brake extends Autonomous {
 			System.out.println("Current Increased Speed after Passing a Pedestrain in Safe Area: "+increasedSpeed);
 		}
 	}
+	
 	public void run() {
 
 			for(int i=0; i<15; i++) {
@@ -61,14 +62,16 @@ public class Brake extends Autonomous {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
 				int decreasedSpeed = (int)(Math.random()*(10)+10);
 				handleEvents(setRandomEvent(),decreasedSpeed,decreasedSpeed+20);	
 			}
-
-		
+	}
+	@Override
+	public void handleData() {
 		
 	}
+
+
 
 
 }
